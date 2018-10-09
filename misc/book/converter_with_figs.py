@@ -4,7 +4,7 @@ Created on Fri Sep  28 20:01:12 2018
 
 @author: aleksandra
 """
-import os
+import runpy
 
 
 def convert(file_name):
@@ -15,7 +15,7 @@ def convert(file_name):
         my_code = my_file.readlines()
 
     if 'import matplotlib.pyplot as plt\n' in my_code:
-        os.system(file_name)
+        runpy.run_path(file_name)
 
     text = ''
     code = False
