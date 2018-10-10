@@ -20,7 +20,7 @@ def convert(file_name):
     for string in my_code:
         notprint = True
         if string.startswith('# >>>'):
-            text = text + '\n' + string.replace('# >>>', '    #')
+            text = text + string.replace('# >>>', '    #')
             notprint = False
             continue
         if string.startswith('# `') and string.endswith('`\n'):
