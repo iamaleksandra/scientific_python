@@ -30,7 +30,7 @@ def convert(file_name):
             print(fig_path)
             fig = Path(fig_path)
             fig.replace(Path(fig.parent, '{}_{}'.format(file_name[:-3],
-                             fig.stem) + fig.ext))
+                             fig.stem) + fig.suffix))
             fig_path = (str(fig.parent) + '/{}_{}'.format(file_name[:-3],
                         fig.stem) + fig.suffix)
             fig = Path(fig_path)
