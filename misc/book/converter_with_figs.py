@@ -5,6 +5,7 @@ Created on Fri Sep  28 20:01:12 2018
 @author: aleksandra
 """
 import runpy
+from pathlib import Path
 
 
 def convert(file_name):
@@ -25,9 +26,16 @@ def convert(file_name):
     for string in my_code:
         notprint = True
         if string.startswith('plt.savefig'):
-            fig_name = string[13:-3]
+            fig_path = string[13:-3]
+            print(fig_path)
+            fig = Path(fig_path)
+            fig.replace(Path(fig.parent, '{}_{}'.format(file_name[:-3],
+                             fig.stem) + fig.ext))
+            fig_path = (str(fig.parent) + '/{}_{}'.format(file_name[:-3],
+                        fig.stem) + fig.suffix)
+            fig = Path(fig_path)
             text = (text + string + '\n ``` \n' +
-                    '\n ![{}]({})'.format(fig_name[:-3], fig_name) + '\n')
+                    '\n ![{}]({})'.format(fig.stem, fig) + '\n')
             code = False
             continue
         if string.startswith('# >>>'):
